@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+    <h1>{{title}}</h1>
+    <a href="{% url "form-create-profesor" %}" class="btn btn-dark">Agregar nuevo Profesor</a>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Email</th>
+            <th scope="col">DNI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for profesores in profesores %}
+                <td scope=""row>{{forloop.counter}}</td>    
+                <td>{{profesores.nombre}}</td>
+                <td>{{profesores.apellidos}}</td>
+                <td>{{profesores.rol}}</td>
+                <td>{{profesores.email}}</td>
+                <td>{{profesores.dni}}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+
+{% endblock content %}

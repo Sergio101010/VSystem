@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+    <h1>{{title}}</h1>
+    <a href="{% url "form-create-persona" %}" class="btn btn-dark">Agregar nuevo estudiante</a>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Email</th>
+            <th scope="col">DNI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for estudiantes in estudiantes %}
+                <td scope=""row>{{forloop.counter}}</td>    
+                <td>{{estudiantes.nombre}}</td>
+                <td>{{estudiantes.apellidos}}</td>
+                <td>{{estudiantes.rol}}</td>
+                <td>{{estudiantes.email}}</td>
+                <td>{{estudiantes.dni}}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+
+{% endblock content %}

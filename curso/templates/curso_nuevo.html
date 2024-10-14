@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<h1 class="form">Formulario para agregar cursos</h1>
+
+<form action="{% url "agregar-curso" %}" method="post">
+    {% csrf_token %}
+
+    <div class="mb-3 formCreatePersona">
+      <label for="nameTextInput" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="Nombre_curso" name="Nombre_curso">
+    </div>
+
+    <div class="mb-3">
+        <label for="lastNameTextInput" class="form-label">Capacidad Maxima</label>
+        <input type="text" class="form-control" id="capacidad_maxima" name="capacidad_maxima" >
+      </div>
+
+    <div class="mb-3">
+        <label for="dniTextInput" class="form-label">Profesor</label>
+        <select class="form-control w-100" name="profesor" id="profesor"> 
+          {% for profesor in profesores  %}
+            <option value="{{profesor.id}}">{{profesor}}</option>
+          {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-dark">Guardar</button>
+</form>
+
+
+{% endblock content %}

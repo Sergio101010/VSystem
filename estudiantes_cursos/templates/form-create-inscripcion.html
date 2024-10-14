@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<h1 class="form">Formulario para agregar inscripciones</h1>
+
+<form action="{% url "formCreateInscripcion" %}" method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="dniTextInput" class="form-label">Estudiante</label>
+      <select class="form-control w-100" name="estudiante" id="estudiante"> 
+        {% for estudiante in estudiantes  %}
+          <option value="{{estudiante.id}}">{{estudiante}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="dniTextInput" class="form-label">Curso</label>
+      <select class="form-control w-100" name="curso" id="curso"> 
+        {% for curso in cursos  %}
+          <option value="{{curso.id}}">{{curso}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="dniTextInput" class="form-label">Fecha Inicio</label>
+        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" >
+    </div>
+
+    <div class="mb-3">
+        <label for="dniTextInput" class="form-label">FechaFinal</label>
+        <input type="date" class="form-control" id="fecha_final" name="fecha_final" >
+    </div>
+
+    <div class="mb-3">
+      <label for="dniTextInput" class="form-label">Estado</label>
+      <select class="form-control w-100" name="estado" id="estado">
+        <option value="" disabled selected>seleccionar estado</option> 
+        <option value="En cursoo">En curso</option>
+        <option value="Finalizado">Finalizado</option>
+      </select>
+  </div>
+
+    <div class="mb-3">
+        <label for="lastNameTextInput" class="form-label">Nota Final</label>
+        <input type="decimal" class="form-control" id="nota_final" name="nota_final" >
+      </div>
+
+    <button type="submit" class="btn btn-dark">Guardar</button>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<h1 class="form">Formulario para agregar matriculas</h1>
+
+<form action="{% url "agregar-matricula" %}" method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="dniTextInput" class="form-label">Estado</label>
+      <select class="form-control w-100" name="estado" id="estado">
+        <option value="" disabled selected>seleccionar estado</option> 
+        <option value="Pago">Pago</option>
+        <option value="No pago">No pago</option>
+      </select>
+  </div>
+
+    <div class="mb-3">
+        <label for="lastNameTextInput" class="form-label">Fecha de inicio</label>
+        <input type="date" class="form-control" id="Fecha_inicio" name="fecha_inicio" >
+      </div>
+
+      <div class="mb-3">
+        <label for="dniTextInput" class="form-label">Estudiante-Curso</label>
+        <select class="form-control w-100" name="estudiante_curso" id="estudiante_curso"> 
+          {% for estudiante_curso in estudiantes_cursos  %}
+            <option value="{{estudiante_curso.id}}">{{estudiante_curso}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+    <div class="mb-3">
+        <label for="dniTextInput" class="form-label">Costo</label>
+        <input type="decimal" class="form-control" id="costo" name="costo" >
+    </div>
+
+    <button type="submit" class="btn btn-dark">Guardar</button>
+</form>
+
+
+{% endblock content %}
